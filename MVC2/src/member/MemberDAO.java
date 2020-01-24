@@ -47,23 +47,72 @@ public class MemberDAO {
 		sql.append("insert into member");
 		sql.append("(id,password,name,age,birth,email,img)");
 		sql.append("values(?,?,?,?,?,?,?)");
-		int i=0;
+		int i = 0;
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1,dto.getId());
+			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());
-			pstmt.setString(3,dto.getName());
-			pstmt.setInt(4,dto.getAge());
+			pstmt.setString(3, dto.getName());
+			pstmt.setInt(4, dto.getAge());
 			pstmt.setString(5, dto.getBirth());
-			pstmt.setString(6,dto.getEmail());
+			pstmt.setString(6, dto.getEmail());
 			pstmt.setString(7, dto.getImg());
-			i=pstmt.executeUpdate();
+			i = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeAll(conn, pstmt);
 		}
 		return i;
+	}
+
+	public MemberDTO read(String id) {
+		MemberDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement("select * from member where id=?");
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) { 
+				dto=new MemberDTO(
+						           rs.getString("id"),
+						           rs.getString("password"),
+						           rs.getString("m_grade"),
+						           rs.getString("name"),
+						           rs.getInt("age"),
+						           rs.getString("birth"),
+						           rs.getString("email"),
+						           rs.getString("img")
+						         );
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return dto;
+	}
+	public boolean login(String id,String password) {
+		boolean flag=false;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			conn=dataFactory.getConnection();
+			pstmt = conn.prepareStatement("select * from member where id=? and password= ?");
+			pstmt.setString(1, id);
+			pstmt.setString(2,password);
+			rs=pstmt.executeQuery();
+			flag=rs.next();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll(rs,pstmt,conn);
+		}
+		return flag;
 	}
 }

@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import command.Command;
 import command.consrete.ActionCommand;
 import command.consrete.InsertCommand;
+import command.consrete.LoginCommand;
 import command.ui.FailUICommand;
 import command.ui.IndexUICommand;
 import command.ui.InsertUICommand;
+import command.ui.LoginUICommand;
+import command.ui.LogoutUICommand;
 
 /**
  * Servlet implementation class FlontServlet
@@ -21,18 +24,9 @@ import command.ui.InsertUICommand;
 public class FlontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public FlontController() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getContextPath();
@@ -52,6 +46,15 @@ public class FlontController extends HttpServlet {
 		case "/insert.do":
 			com = new InsertCommand();
 			break;
+		case "/loginui.do":
+			com=new LoginUICommand();
+			break;
+		case "/login.do":
+			com=new LoginCommand();
+			break;
+		case "/logoutui.do":
+			com=new LogoutUICommand();
+			break;
 		default:
 			break;
 		}
@@ -64,11 +67,6 @@ public class FlontController extends HttpServlet {
 			request.getRequestDispatcher(ac.getUrl()).forward(request, response);
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

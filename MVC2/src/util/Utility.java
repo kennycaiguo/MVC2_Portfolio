@@ -2,13 +2,15 @@ package util;
 
 import java.util.Calendar;
 
+import member.MemberDAO;
+
 public class Utility {
 
 	public Utility() {
 	}
 
 	public int getAge(String year, String month) {
-		int age = Calendar.getInstance().get(Calendar.YEAR)-strCastingint(year);
+		int age = Calendar.getInstance().get(Calendar.YEAR) - strCastingint(year);
 		if (strCastingint(month) < 3) {
 			return age + 1;
 		}
@@ -18,5 +20,11 @@ public class Utility {
 
 	private int strCastingint(String values) {
 		return Integer.parseInt(values);
+	}
+
+	public static String getGrade(String id) {
+		if (id != null)
+			return new MemberDAO().read(id).getM_grade();
+		return null;
 	}
 }

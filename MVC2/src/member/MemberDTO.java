@@ -18,7 +18,7 @@ public class MemberDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String password;
-	private char m_class;
+	private String m_grade;
 	private String name;
 	private int age;
 	private String birth;
@@ -33,8 +33,7 @@ public class MemberDTO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String id, String password, String name, String birth, String email,
-			String img) {
+	public MemberDTO(String id, String password, String name, String birth, String email, String img) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
@@ -42,12 +41,12 @@ public class MemberDTO implements Serializable {
 		this.email = email;
 		this.img = img;
 	}
-	
-	public MemberDTO(String id, String password, char m_class, String name, int age, String birth, String email,
+
+	public MemberDTO(String id, String password, String m_grade, String name, int age, String birth, String email,
 			String img) {
 		this.id = id;
 		this.password = password;
-		this.m_class = m_class;
+		this.m_grade = m_grade;
 		this.name = name;
 		this.age = age;
 		this.birth = birth;
@@ -86,15 +85,15 @@ public class MemberDTO implements Serializable {
 	/**
 	 * @return the class
 	 */
-	public char getM_class() {
-		return m_class;
+	public String getM_grade() {
+		return m_grade;
 	}
 
 	/**
 	 * @param class1 the class to set
 	 */
-	public void setM_class(char m_class) {
-		this.m_class = m_class;
+	public void setM_grade(String m_grade) {
+		this.m_grade = m_grade;
 	}
 
 	/**
@@ -170,7 +169,7 @@ public class MemberDTO implements Serializable {
 	/**
 	 * @return the serialversionuid
 	 */
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -213,5 +212,5 @@ public class MemberDTO implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
