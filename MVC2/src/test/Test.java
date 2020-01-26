@@ -1,11 +1,6 @@
 package test;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import util.ImgFileUpload;
+import util.EL_Utility;
 
 public class Test {
 
@@ -91,26 +86,28 @@ public class Test {
 //		FILE_UPLOAD_PATH.delete(oldFileName.indexOf("Test.jpg"), oldFileName.length());
 //		System.out.println("after:" + FILE_UPLOAD_PATH.toString());
 		
-		List<Boolean> flag= new ArrayList<Boolean>();
-		List<Boolean> alltrue= new ArrayList<Boolean>();
-		for(int i=0; i<10; i++) {
-			flag.add(false);
-			alltrue.add(true);
-			if(true) {
-				flag.set(i, true);
-			}
-		}
-		System.out.println(Arrays.deepEquals(flag.toArray(), alltrue.toArray()));
-		String separator = File.separator;
-		String root = "C:" + separator + "git" + separator + "MVC2_Portfolio" + separator + "MVC2"+separator;
-		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"WEB-INF"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","admin");
-		
-		try {
-			
-			imgtest.fileUpdate("(admin)admin.jpg");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		List<Boolean> flag= new ArrayList<Boolean>();
+//		List<Boolean> alltrue= new ArrayList<Boolean>();
+//		for(int i=0; i<10; i++) {
+//			flag.add(false);
+//			alltrue.add(true);
+//			if(true) {
+//				flag.set(i, true);
+//			}
+//		}
+//		System.out.println(Arrays.deepEquals(flag.toArray(), alltrue.toArray()));
+//		String separator = File.separator;
+//		String root = "C:" + separator + "git" + separator + "MVC2_Portfolio" + separator + "MVC2"+separator;
+//		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"WEB-INF"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","admin");
+//		
+//		try {
+//			
+//			imgtest.fileUpdate("(admin)admin.jpg");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		System.out.println(EL_Utility.getImgPath("member"));
+		System.out.println(EL_Utility.getImgPath("temp"));
 	}
 
 }

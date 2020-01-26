@@ -1,5 +1,6 @@
 package test;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -22,16 +23,25 @@ public class TestController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getContextPath();
+		String path = request.getContextPath()+File.separator+"test";
 		String uri = request.getRequestURI();
 		String what = uri.substring(path.length()).toLowerCase();
 		Command com = null;
+		System.out.println(path);
+		System.out.println(uri);
+		System.out.println(what);
 		switch (what) {
 		case "/testfileui.test":
 			com=new Testfileui();
 			break;
 		case "/test.test":
 			com=new Testfile();
+			break;
+		case "/testupdatefileui.test":
+			com=new TestUpdatefileui();
+			break;
+		case "/testupdate.test":
+			com=new Testupdate();
 			break;
 		}
 		if (com != null) {

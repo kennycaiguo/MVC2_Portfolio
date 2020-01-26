@@ -24,7 +24,7 @@ public class Testfile implements Command {
 			System.out.println("fileCommand file name:"+new File(file).getName());
 			String fileName=null;
 			try {
-				//fileName = new ImgFileUpload(file);
+				fileName = new ImgFileUpload(file,"tester").fileUpload(true);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -26,6 +26,7 @@ public class EL_Utility {
 		}
 		return path;
 	}
+	
 	public static String getTempImg() {
 		String fileName=null;
 		try {
