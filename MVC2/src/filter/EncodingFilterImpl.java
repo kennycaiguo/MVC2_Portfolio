@@ -1,8 +1,6 @@
 package filter;
 
 import java.io.IOException;
-
-import javax.jws.WebService;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,12 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
-
 /**
  * Servlet Filter implementation class EncodingFilterImpl
  */
-/* @WebServlet("/*") */
+@WebFilter("/*")
 public class EncodingFilterImpl implements Filter {
 
     /**
@@ -39,7 +35,7 @@ public class EncodingFilterImpl implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("text/html; charset=euc-kr");
+		response.setContentType("text/html; charset=euc-kr");
 		chain.doFilter(request, response);
 	}
 

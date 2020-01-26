@@ -14,10 +14,20 @@
 		<description>등급반환</description>
 		<name>getGrade</name>
 		<function-class>
-			util.Utility
+			util.EL_Utility
 		</function-class>
 		<function-signature>
 			java.lang.String getGrade(java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>이미지경로반환</description>
+		<name>getImgPath</name>
+		<function-class>
+			util.EL_Utility
+		</function-class>
+		<function-signature>
+			java.lang.String getImgPath(java.lang.String)
 		</function-signature>
 	</function>
 </taglib>

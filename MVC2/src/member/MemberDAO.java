@@ -22,7 +22,7 @@ public class MemberDAO {
 		}
 	}
 
-	private void closeAll(Object... obj) {
+	private void closeAll(Object... obj) throws Exception {
 		try {
 			for (int i = 0; i < obj.length; i++) {
 				if (obj[i] instanceof ResultSet) {
@@ -40,7 +40,7 @@ public class MemberDAO {
 		}
 	}
 
-	public int create(MemberDTO dto) {
+	public int create(MemberDTO dto) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		StringBuffer sql = new StringBuffer();
@@ -67,7 +67,7 @@ public class MemberDAO {
 		return i;
 	}
 
-	public MemberDTO read(String id) {
+	public MemberDTO read(String id) throws Exception {
 		MemberDTO dto = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -76,18 +76,11 @@ public class MemberDAO {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement("select * from member where id=?");
 			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			if(rs.next()) { 
-				dto=new MemberDTO(
-						           rs.getString("id"),
-						           rs.getString("password"),
-						           rs.getString("m_grade"),
-						           rs.getString("name"),
-						           rs.getInt("age"),
-						           rs.getString("birth"),
-						           rs.getString("email"),
-						           rs.getString("img")
-						         );
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new MemberDTO(rs.getString("id"), rs.getString("password"), rs.getString("m_grade"),
+						rs.getString("name"), rs.getInt("age"), rs.getString("birth"), rs.getString("email"),
+						rs.getString("img"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,22 +89,23 @@ public class MemberDAO {
 		}
 		return dto;
 	}
-	public boolean login(String id,String password) {
-		boolean flag=false;
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+
+	public boolean login(String id, String password) throws Exception {
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			conn=dataFactory.getConnection();
+			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement("select * from member where id=? and password= ?");
 			pstmt.setString(1, id);
-			pstmt.setString(2,password);
-			rs=pstmt.executeQuery();
-			flag=rs.next();
-		}catch (Exception e) {
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			flag = rs.next();
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			closeAll(rs,pstmt,conn);
+		} finally {
+			closeAll(rs, pstmt, conn);
 		}
 		return flag;
 	}

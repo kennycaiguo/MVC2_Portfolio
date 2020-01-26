@@ -10,23 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		request.getSession().setAttribute("id", "admin");
-	%>
-		<c:set var="id" value="${sessionScope.id }"/>
-		<c:choose>
-			<c:when test="${'a' eq util:getGrade(id) }" >
-				list
-			</c:when>
-			<c:otherwise>
-				read
-			</c:otherwise>
-		</c:choose>
-		<c:if test="${'a' eq util:getGrade(id)}">
-			<a>list</a>
-		</c:if>		
-		<c:if test="${'a' ne util:getGrade(id)}">
-			<a>read</a>
-		</c:if>
+	<form action="test.test" method="post">
+	
+		<input name="file" type="file">
+		<input type="submit" value="submit"/>
+	</form>
 </body>
 </html>

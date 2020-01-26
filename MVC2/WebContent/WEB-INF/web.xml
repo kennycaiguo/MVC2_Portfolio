@@ -19,31 +19,40 @@
   <jsp-config>
   	<taglib>
   		<taglib-uri>
-  			/WEB-INF/tlds/utility.tld
+  			/WEB-INF/tlds/EL_Utility.tld
   		</taglib-uri>
   		<taglib-location>
-  			/WEB-INF/tlds/utility.tld
+  			/WEB-INF/tlds/EL_Utility.tld
   		</taglib-location>
   	</taglib>
   </jsp-config>
- <filter>
-  	<filter-name>encoding</filter-name>
-  	<filter-class>filter.EncodingFilterImpl</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>encoding</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
   
+ <!--  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<servlet-class>test.TestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>*.test</url-pattern>
+  </servlet-mapping>
   
   <servlet>
-  	<servlet-name>flont</servlet-name>
+  	<servlet-name>controller</servlet-name>
   	<servlet-class>controller.FlontController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>flont</servlet-name>
+  	<servlet-name>controller</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
+  
+  <filter>
+  	<filter-name>encoding</filter-name>
+  	<filter-class>filter.EncodingFilterImpl</filter-class>
+  </filter>
+  <servlet-mapping>
+  	<servlet-name>encoding</servlet-name>
+  	<url-pattern>/*</url-pattern>
+  </servlet-mapping> -->
+  
   
 </web-app>

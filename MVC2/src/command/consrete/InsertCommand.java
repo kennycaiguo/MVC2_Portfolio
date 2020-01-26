@@ -33,7 +33,12 @@ public class InsertCommand implements Command {
 		String img=request.getParameter("img");
 		int age=util.getAge(year,month);  
 		
-		int i = new MemberDAO().create(new MemberDTO());
+		int i=0;
+		try {
+			i = new MemberDAO().create(new MemberDTO());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		if (i == 1) {
 			request.setAttribute("id",id);
