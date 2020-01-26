@@ -54,27 +54,43 @@ public class Test {
 //				e.printStackTrace();
 //			}
 //		}
-		/*
-		 * final StringBuffer FILE_UPLOAD_PATH=new StringBuffer(); final StringBuffer
-		 * FILE_UPLOAD_TEMP=new StringBuffer(); final String ROOT= new
-		 * File("").getAbsolutePath(); final String SEPARATOR= File.separator;
-		 * FILE_UPLOAD_PATH.append(ROOT); FILE_UPLOAD_PATH.append(SEPARATOR);
-		 * FILE_UPLOAD_PATH.append("WebContent"); FILE_UPLOAD_PATH.append(SEPARATOR);
-		 * FILE_UPLOAD_PATH.append("WEB-INF"); FILE_UPLOAD_PATH.append(SEPARATOR);
-		 * FILE_UPLOAD_PATH.append("imgFile"); FILE_UPLOAD_PATH.append(SEPARATOR);
-		 * FILE_UPLOAD_PATH.append("member"); FILE_UPLOAD_PATH.append(SEPARATOR);
-		 * 
-		 * FILE_UPLOAD_TEMP.append(ROOT); FILE_UPLOAD_TEMP.append(SEPARATOR);
-		 * FILE_UPLOAD_TEMP.append("WebContent"); FILE_UPLOAD_TEMP.append(SEPARATOR);
-		 * FILE_UPLOAD_TEMP.append("WEB-INF"); FILE_UPLOAD_TEMP.append(SEPARATOR);
-		 * FILE_UPLOAD_TEMP.append("imgFile"); FILE_UPLOAD_TEMP.append(SEPARATOR);
-		 * FILE_UPLOAD_TEMP.append("temp"); FILE_UPLOAD_TEMP.append(SEPARATOR);
-		 * FILE_UPLOAD_TEMP.append("TEMP_admin.jpg");
-		 * System.out.println(FILE_UPLOAD_PATH.toString());
-		 * System.out.println(FILE_UPLOAD_TEMP.toString()); System.out.println(new
-		 * File(FILE_UPLOAD_PATH.toString())); System.out.println(new
-		 * File(FILE_UPLOAD_TEMP.toString()).delete());
-		 */
+
+//		final StringBuffer FILE_UPLOAD_PATH = new StringBuffer();
+//		final StringBuffer FILE_UPLOAD_TEMP = new StringBuffer();
+//		final String ROOT = new File("").getAbsolutePath();
+//		final String SEPARATOR = File.separator;
+//		FILE_UPLOAD_PATH.append(ROOT);
+//		FILE_UPLOAD_PATH.append(SEPARATOR);
+//		FILE_UPLOAD_PATH.append("WebContent");
+//		FILE_UPLOAD_PATH.append(SEPARATOR);
+//		FILE_UPLOAD_PATH.append("WEB-INF");
+//		FILE_UPLOAD_PATH.append(SEPARATOR);
+//		FILE_UPLOAD_PATH.append("imgFile");
+//		FILE_UPLOAD_PATH.append(SEPARATOR);
+//		FILE_UPLOAD_PATH.append("member");
+//		FILE_UPLOAD_PATH.append(SEPARATOR);
+//
+//		FILE_UPLOAD_TEMP.append(ROOT);
+//		FILE_UPLOAD_TEMP.append(SEPARATOR);
+//		FILE_UPLOAD_TEMP.append("WebContent");
+//		FILE_UPLOAD_TEMP.append(SEPARATOR);
+//		FILE_UPLOAD_TEMP.append("WEB-INF");
+//		FILE_UPLOAD_TEMP.append(SEPARATOR);
+//		FILE_UPLOAD_TEMP.append("imgFile");
+//		FILE_UPLOAD_TEMP.append(SEPARATOR);
+//		FILE_UPLOAD_TEMP.append("temp");
+//		FILE_UPLOAD_TEMP.append(SEPARATOR);
+//		FILE_UPLOAD_TEMP.append("TEMP_admin.jpg");
+//		String newFileName = FILE_UPLOAD_TEMP.toString();
+//		FILE_UPLOAD_PATH.append("Test.jpg");
+//		String oldFileName = FILE_UPLOAD_PATH.toString();
+//		System.out.println(FILE_UPLOAD_PATH.indexOf("Test.jpg"));
+//		System.out.println("length:" + FILE_UPLOAD_PATH.length());
+//		System.out.println("before:" + FILE_UPLOAD_PATH.toString());
+//		FILE_UPLOAD_PATH.delete(FILE_UPLOAD_PATH.indexOf("Test.jpg"), FILE_UPLOAD_PATH.length());
+//		FILE_UPLOAD_PATH.delete(oldFileName.indexOf("Test.jpg"), oldFileName.length());
+//		System.out.println("after:" + FILE_UPLOAD_PATH.toString());
+		
 		List<Boolean> flag= new ArrayList<Boolean>();
 		List<Boolean> alltrue= new ArrayList<Boolean>();
 		for(int i=0; i<10; i++) {
@@ -87,9 +103,11 @@ public class Test {
 		System.out.println(Arrays.deepEquals(flag.toArray(), alltrue.toArray()));
 		String separator = File.separator;
 		String root = "C:" + separator + "git" + separator + "MVC2_Portfolio" + separator + "MVC2"+separator;
-		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"WEB-INF"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","tester");
+		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"WEB-INF"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","admin");
+		
 		try {
-			System.out.println(imgtest.fileUpload(true));
+			
+			imgtest.fileUpdate("(admin)admin.jpg");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

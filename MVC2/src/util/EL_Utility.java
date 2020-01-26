@@ -26,4 +26,14 @@ public class EL_Utility {
 		}
 		return path;
 	}
+	public static String getTempImg() {
+		String fileName=null;
+		try {
+			fileName= new ImgFileUpload().fileUpload(false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fileName;
+	}
 }
