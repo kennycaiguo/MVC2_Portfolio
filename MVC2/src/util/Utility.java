@@ -22,9 +22,5 @@ public class Utility {
 		return Integer.parseInt(values);
 	}
 
-	public static String getGrade(String id) {
-		if (id != null)
-			return new MemberDAO().read(id).getM_grade();
-		return null;
-	}
+
 }

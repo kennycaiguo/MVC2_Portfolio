@@ -1,5 +1,6 @@
-package controller;
+package test;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,53 +11,37 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 import command.consrete.ActionCommand;
-import command.consrete.InsertCommand;
-import command.consrete.LoginCommand;
-import command.ui.FailUICommand;
-import command.ui.IndexUICommand;
-import command.ui.InsertUICommand;
-import command.ui.LoginUICommand;
-import command.ui.LogoutUICommand;
-
 /**
  * Servlet implementation class FlontServlet
  */
-@WebServlet("*.do")
-public class FlontController extends HttpServlet {
+@WebServlet("*.test")
+public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FlontController() {
+	public TestController() {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getContextPath();
+		String path = request.getContextPath()+File.separator+"test";
 		String uri = request.getRequestURI();
 		String what = uri.substring(path.length()).toLowerCase();
 		Command com = null;
+		System.out.println(path);
+		System.out.println(uri);
+		System.out.println(what);
 		switch (what) {
-		case "/fail.do":
-			com = new FailUICommand();
+		case "/testfileui.test":
+			com=new Testfileui();
 			break;
-		case "/index.do":
-			com = new IndexUICommand();
+		case "/test.test":
+			com=new Testfile();
 			break;
-		case "/insertui.do":
-			com = new InsertUICommand();
+		case "/testupdatefileui.test":
+			com=new TestUpdatefileui();
 			break;
-		case "/insert.do":
-			com = new InsertCommand();
-			break;
-		case "/loginui.do":
-			com=new LoginUICommand();
-			break;
-		case "/login.do":
-			com=new LoginCommand();
-			break;
-		case "/logoutui.do":
-			com=new LogoutUICommand();
-			break;
-		default:
+		case "/testupdate.test":
+			com=new Testupdate();
 			break;
 		}
 		if (com != null) {
