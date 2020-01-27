@@ -31,10 +31,9 @@ public class InsertCommand implements Command {
 		String birth=year+"-"+month+"-"+date;
 		String email=request.getParameter("email");
 		String img=request.getParameter("img");
-		int age=util.getAge(year,month);  
-		
 		int i=0;
 		try {
+			int age=util.getAge(year,month);  
 			i = new MemberDAO().create(new MemberDTO());
 		} catch (Exception e) {
 			e.printStackTrace();

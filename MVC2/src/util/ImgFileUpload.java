@@ -53,15 +53,15 @@ public class ImgFileUpload {
 	public String fileUpdate(String oldFile) throws Exception {
 		File file = null;
 		String newFileName = fileUpload(TEMP);// temp경로에 임시로 newFileimg 생성
-		System.out.println("FILE_UPLOAD_MEMBER:" + FILE_UPLOAD_MEMBER.toString());
-		System.out.println("FILE_UPLOAD_TEMP:" + FILE_UPLOAD_TEMP.toString());
-		System.out.println("newFileName:" + newFileName);
+		// System.out.println("FILE_UPLOAD_MEMBER:" + FILE_UPLOAD_MEMBER.toString());
+		// System.out.println("FILE_UPLOAD_TEMP:" + FILE_UPLOAD_TEMP.toString());
+		// System.out.println("newFileName:" + newFileName);
 		dirPathReset();
 		FILE_UPLOAD_MEMBER.append(oldFile);
 		this.file = FILE_UPLOAD_MEMBER.toString();
 		FILE_UPLOAD_TEMP.append("old_" + oldFile);
 		String oldFileName = fileUpload(TEMP);
-		System.out.println("oldFileName:" + oldFileName);
+		// System.out.println("oldFileName:" + oldFileName);
 		file = new File(FILE_UPLOAD_MEMBER.toString());
 		if (file.exists()) {
 			fileDelete(MEMBER);
@@ -71,15 +71,13 @@ public class ImgFileUpload {
 			newFileName = fileUpload(MEMBER);
 		}
 
-		System.out.println("finish newFileName:" + newFileName);
+		// System.out.println("finish newFileName:" + newFileName);
 		return newFileName;
 	}
 
 	private void setVariable(String id) {
 		FILE_UPLOAD_MEMBER.append(ROOT);
 		FILE_UPLOAD_MEMBER.append("WebContent");
-		FILE_UPLOAD_MEMBER.append(SEPARATOR);
-		FILE_UPLOAD_MEMBER.append("WEB-INF");
 		FILE_UPLOAD_MEMBER.append(SEPARATOR);
 		FILE_UPLOAD_MEMBER.append("imgFile");
 		FILE_UPLOAD_MEMBER.append(SEPARATOR);
@@ -89,15 +87,13 @@ public class ImgFileUpload {
 		FILE_UPLOAD_TEMP.append(ROOT);
 		FILE_UPLOAD_TEMP.append("WebContent");
 		FILE_UPLOAD_TEMP.append(SEPARATOR);
-		FILE_UPLOAD_TEMP.append("WEB-INF");
-		FILE_UPLOAD_TEMP.append(SEPARATOR);
 		FILE_UPLOAD_TEMP.append("imgFile");
 		FILE_UPLOAD_TEMP.append(SEPARATOR);
 		FILE_UPLOAD_TEMP.append("temp");
 		FILE_UPLOAD_TEMP.append(SEPARATOR);
 		memberDir = FILE_UPLOAD_MEMBER.toString();
 		tempDir = FILE_UPLOAD_TEMP.toString();
-		if(this.file!=null) {
+		if (this.file != null) {
 			getFileName = new File(this.file).getName().toLowerCase();
 		}
 		if (id != null) {
@@ -110,16 +106,16 @@ public class ImgFileUpload {
 	private void dirPathReset() {
 		FILE_UPLOAD_MEMBER.delete(memberDir.length(), FILE_UPLOAD_MEMBER.length());
 		FILE_UPLOAD_TEMP.delete(tempDir.length(), FILE_UPLOAD_TEMP.length());
-		System.out.println("pathReset:" + FILE_UPLOAD_MEMBER.toString());
-		System.out.println("tempReset:" + FILE_UPLOAD_TEMP.toString());
+		// System.out.println("pathReset:" + FILE_UPLOAD_MEMBER.toString());
+		// System.out.println("tempReset:" + FILE_UPLOAD_TEMP.toString());
 	}
 
 	private boolean fileCheck(boolean flag) throws Exception {
 		if (flag) {
-			System.out.println("TEMP FILE CHECK");
+			// System.out.println("TEMP FILE CHECK");
 			return new File(FILE_UPLOAD_TEMP.toString()).exists();
 		}
-		System.out.println("PATH FILE CHECK");
+		// System.out.println("PATH FILE CHECK");
 		return new File(FILE_UPLOAD_MEMBER.toString()).exists();
 	}
 
@@ -131,8 +127,10 @@ public class ImgFileUpload {
 		FileChannel outfc = null;
 		String inUrl = flag ? this.file : FILE_UPLOAD_TEMP.toString();
 		String outUrl = flag ? FILE_UPLOAD_TEMP.toString() : FILE_UPLOAD_MEMBER.toString();
-		System.out.println("inUrl:" + inUrl);
-		System.out.println("outUrl:" + outUrl);
+
+		// System.out.println("inUrl:" + inUrl);
+		// System.out.println("outUrl:" + outUrl);
+
 		try {
 			in = new FileInputStream(inUrl);
 			infc = ((FileInputStream) in).getChannel();
@@ -156,11 +154,11 @@ public class ImgFileUpload {
 		if (target.exists()) {
 			if (flag) {
 				target = new File(FILE_UPLOAD_MEMBER.toString());
-				System.out.println("MEMBER_delete:" + target.getName());
+				// System.out.println("MEMBER_delete:" + target.getName());
 				target.delete();
 			} else {
 				target = new File(FILE_UPLOAD_TEMP.toString());
-				System.out.println("TEMP_delete:" + target.getName());
+				// System.out.println("TEMP_delete:" + target.getName());
 				target.delete();
 			}
 
@@ -176,17 +174,17 @@ public class ImgFileUpload {
 				alltrue.add(true);
 				if (obj[i] instanceof OutputStream) {
 					((OutputStream) obj[i]).close();
-					System.out.println("OutputStream 객체 close");
+					// System.out.println("OutputStream 객체 close");
 					flag.set(i, true);
 				}
 				if (obj[i] instanceof InputStream) {
 					((InputStream) obj[i]).close();
-					System.out.println("InputStream 객체 close");
+					// System.out.println("InputStream 객체 close");
 					flag.set(i, true);
 				}
 				if (obj[i] instanceof FileChannel) {
 					((FileChannel) obj[i]).close();
-					System.out.println("FileChannel 객체 close");
+					// System.out.println("FileChannel 객체 close");
 					flag.set(i, true);
 				}
 			}
@@ -199,6 +197,9 @@ public class ImgFileUpload {
 	// ELFunction 사용
 	public String getPath(String where) throws Exception {
 		dirPathReset();
-		return where.toLowerCase().equals("temp") ? FILE_UPLOAD_TEMP.toString() : FILE_UPLOAD_MEMBER.toString();
+		return where.equals("temp") ? substr(tempDir):substr(memberDir);
+	}
+	private String substr(String path) {
+		return path.substring((ROOT+"WebContent"+SEPARATOR).length());
 	}
 }

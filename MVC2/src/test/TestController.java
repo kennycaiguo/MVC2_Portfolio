@@ -23,7 +23,7 @@ public class TestController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getContextPath()+File.separator+"test";
+		String path = request.getContextPath()/*+File.separator+"test"*/;
 		String uri = request.getRequestURI();
 		String what = uri.substring(path.length()).toLowerCase();
 		Command com = null;
@@ -37,12 +37,10 @@ public class TestController extends HttpServlet {
 		case "/test.test":
 			com=new Testfile();
 			break;
-		case "/testupdatefileui.test":
-			com=new TestUpdatefileui();
-			break;
-		case "/testupdate.test":
-			com=new Testupdate();
-			break;
+		/*
+		 * case "/testupdatefileui.test": com=new TestUpdatefileui(); break; case
+		 * "/testupdate.test": com=new Testupdate(); break;
+		 */
 		}
 		if (com != null) {
 			ActionCommand ac = com.execute(request, response);

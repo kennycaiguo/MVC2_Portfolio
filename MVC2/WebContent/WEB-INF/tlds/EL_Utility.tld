@@ -30,4 +30,24 @@
 			java.lang.String getImgPath(java.lang.String)
 		</function-signature>
 	</function>
+	<function>
+		<description>getYear</description>
+		<name>getYear</name>
+		<function-class>
+			util.EL_Utility
+		</function-class>
+		<function-signature>
+			java.util.List getYear()
+		</function-signature>
+	</function>
+	<function>
+		<description>getMonth</description>
+		<name>getMonth</name>
+		<function-class>
+			util.EL_Utility
+		</function-class>
+		<function-signature>
+			java.util.List getMonth()
+		</function-signature>
+	</function>
 </taglib>

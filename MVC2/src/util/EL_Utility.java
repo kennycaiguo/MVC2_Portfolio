@@ -1,9 +1,12 @@
 package util;
 
+import java.io.File;
+import java.util.List;
+
 import member.MemberDAO;
 
 public class EL_Utility {
-
+	
 	public EL_Utility() {
 	}
 
@@ -26,13 +29,27 @@ public class EL_Utility {
 		}
 		return path;
 	}
-	
+	public static List<String> getMonth(){
+		try {
+			return new Utility().getMonth();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static List<String> getYear(){
+		try {
+			return new Utility().getYear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static String getTempImg() {
 		String fileName=null;
 		try {
 			fileName= new ImgFileUpload().fileUpload(false);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return fileName;

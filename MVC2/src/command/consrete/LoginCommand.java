@@ -18,19 +18,20 @@ public class LoginCommand implements Command {
 	@Override
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		String id= request.getParameter("id");
-		ActionCommand ac=null;
+		String id = request.getParameter("id");
+		ActionCommand ac = null;
 		try {
-			if(new MemberDAO().login(id,request.getParameter("password"))) {
-				request.getSession().setAttribute("id",id);
-				ac=new ActionCommand(true,"index.do");
+			if (new MemberDAO().login(id, request.getParameter("password"))) {
+				request.getSession().setAttribute("id", id);
+				ac = new ActionCommand(true, "index.do");
+			}else {
+				request.setAttribute("msg", "아이디와 비빌번호를 확인해 주세요.");
+				request.setAttribute("id", id);
+				ac = new ActionCommand(false, "loginui.do");
 			}
 		} catch (Exception e) {
-			request.setAttribute("msg","아이디와 비빌번호를 확인해 주세요.");
-			request.setAttribute("id",id);
-			ac=new ActionCommand(false,"loginui.do");
 		}
-		return ac; 
+		return ac;
 	}
 
 }

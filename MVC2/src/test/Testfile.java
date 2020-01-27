@@ -20,17 +20,10 @@ public class Testfile implements Command {
 	@Override
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-			String file=request.getParameter("file");
-			System.out.println("fileCommand file name:"+new File(file).getName());
-			String fileName=null;
-			try {
-				fileName = new ImgFileUpload(file,"tester").fileUpload(true);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("fileCommand return file name:"+fileName);
-			return  new ActionCommand(false,"test.jsp");
+			System.out.println(request.getParameter("year"));
+			System.out.println(request.getParameter("month"));
+			System.out.println(request.getParameter("date"));
+			return  new ActionCommand(false,"insertui.do");
 	}
 
 }

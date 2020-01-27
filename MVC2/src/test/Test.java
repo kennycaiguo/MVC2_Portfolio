@@ -1,6 +1,11 @@
 package test;
 
-import util.EL_Utility;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import util.ImgFileUpload;
 
 public class Test {
 
@@ -85,7 +90,7 @@ public class Test {
 //		FILE_UPLOAD_PATH.delete(FILE_UPLOAD_PATH.indexOf("Test.jpg"), FILE_UPLOAD_PATH.length());
 //		FILE_UPLOAD_PATH.delete(oldFileName.indexOf("Test.jpg"), oldFileName.length());
 //		System.out.println("after:" + FILE_UPLOAD_PATH.toString());
-		
+
 //		List<Boolean> flag= new ArrayList<Boolean>();
 //		List<Boolean> alltrue= new ArrayList<Boolean>();
 //		for(int i=0; i<10; i++) {
@@ -96,18 +101,47 @@ public class Test {
 //			}
 //		}
 //		System.out.println(Arrays.deepEquals(flag.toArray(), alltrue.toArray()));
-//		String separator = File.separator;
-//		String root = "C:" + separator + "git" + separator + "MVC2_Portfolio" + separator + "MVC2"+separator;
-//		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"WEB-INF"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","admin");
-//		
-//		try {
-//			
-//			imgtest.fileUpdate("(admin)admin.jpg");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		System.out.println(EL_Utility.getImgPath("member"));
-		System.out.println(EL_Utility.getImgPath("temp"));
+		String separator = File.separator;
+		String root = "C:" + separator + "git" + separator + "MVC2_Portfolio" + separator + "MVC2"+separator;
+		ImgFileUpload imgtest=new ImgFileUpload(root+"WebContent"+separator+"imgFile"+separator+"temp"+separator+"cat.jpg","admin");
+		
+		try {
+			
+			imgtest.fileUpdate("(admin)admin.jpg");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/*
+		 * getYear().forEach(year->{ System.out.println(year); });
+		 * getMonth().forEach(month -> { System.out.println(month); });
+		 */
+		/*
+		 * getMonth().forEach(month->{ System.out.println(month);
+		 * 
+		 * });
+		 */
+	}
+
+
+	public static List<String> getYear() {
+		int year=Calendar.getInstance().get(Calendar.YEAR);
+		List<String> years=new ArrayList<String>();
+		for(int i=year; i>year-100; i--) {
+			years.add(intCastionstr(i));
+		}
+		return years;
+	}
+	public static List<String> getMonth() {
+		List<String> month=new ArrayList<String>();
+		for(int i=1;i<=12; i++) {
+			month.add(intCastionstr(i));
+		}
+		return month;
+	}
+	
+	private static String intCastionstr(int values) {
+		String value = String.valueOf(values);
+		return value.length() < 2 ? "0" + value : value;
 	}
 
 }
